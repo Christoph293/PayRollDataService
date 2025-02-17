@@ -27,7 +27,7 @@ namespace PayrollDataService.Controller.Controllers
         [HttpGet("{id:int}")]
         public Location Get(int id) => locationService.GetLocation(id);
 
-        //Usecase: Ausgabe aller Mitarbeiter, die an einem Standort arbeiten
+        //Usecase 3: Ausgabe aller Mitarbeiter, die an einem Standort arbeiten
         [HttpGet("{id:int}/employees")]
         public IEnumerable<Employee> GetEmployeesByLocationId(int id) => employeeService.GetEmployeesByLocationId(id);
 

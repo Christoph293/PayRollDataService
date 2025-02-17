@@ -23,7 +23,7 @@ namespace PayrollDataService.Controller.Controllers
             this.logger = logger;
         }
 
-        //Usecase: Mitarbeiter wechselt Standorte
+        //Usecase 4: Mitarbeiter wechselt Standorte
         [HttpPut("{id:int}/locations")]
         public async Task<ActionResult<Employee>> UpdateEmployeeLocations(int id, [FromBody] List<int> locationIds)
         {
@@ -41,7 +41,7 @@ namespace PayrollDataService.Controller.Controllers
             return await employeeService.UpdateLocationsOfEmployee(id, locationIds);
         }
 
-        //Usecase: Mitarbeiter wechselt Geschäftspartner
+        //Usecase 5: Mitarbeiter wechselt Geschäftspartner
         [HttpPut("{id:int}/businessAssociate")]
         public async Task<ActionResult<Employee>> UpdateEmployeeBusinessAssociate(int id, [FromBody] int businessAssociateId)
         {
