@@ -10,4 +10,8 @@
     <ProjectReference Include="..\PayrollDataService.Interface\PayrollDataService.Interface.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="DbDocs\" />
+  </ItemGroup>
+
 </Project>
