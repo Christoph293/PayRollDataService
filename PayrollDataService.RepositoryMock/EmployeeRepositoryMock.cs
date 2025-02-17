@@ -39,12 +39,27 @@ namespace PayrollDataService.RepositoryMock
             return repositoryMockBase.Employees.Where(x => x.Locations.Contains(id)).ToList();
         }
 
+        public void UpdateBusinessAssociate(int id, int businessAssociateId)
+        {
+            throw new NotImplementedException();
+        }
+
         public Employee UpdateEmployee(int id, Employee employee)
         {
             throw new NotImplementedException();
         }
 
-        public void UpdateLocationsOfEmployee(int id, List<int> locationIds)
+        public void AddLocationsOfEmployee(int id, List<int> locationIds)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DeleteLocationsOfEmployee(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void UpdateBusinessAssociateOfEmployeesWithLocationId(int locationId, int businessAssociateId)
         {
             throw new NotImplementedException();
         }

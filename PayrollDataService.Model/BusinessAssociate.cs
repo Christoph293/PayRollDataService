@@ -8,6 +8,11 @@ namespace PayrollDataService.Model
 {
     public class BusinessAssociate : AddressableDBEntity
     {
+        public BusinessAssociate()
+        {
+            Locations = new List<int>();
+        }
+
         public IList<int> Locations;
     }
 }

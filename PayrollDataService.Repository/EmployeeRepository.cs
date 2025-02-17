@@ -1,5 +1,6 @@
 ﻿using PayrollDataService.Interface;
 using PayrollDataService.Model;
+using System.Collections.Generic;
 
 namespace PayrollDataService.Repository
 {
@@ -15,8 +16,10 @@ namespace PayrollDataService.Repository
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Employee> GetEmployee(int id)
+        public Employee GetEmployee(int id)
         {
+            //select * from Employee where ID = id;
+
             throw new NotImplementedException();
         }
 
@@ -35,18 +38,40 @@ namespace PayrollDataService.Repository
             throw new NotImplementedException();
         }
 
+        public void UpdateBusinessAssociate(int id, int businessAssociateId)
+        {
+            //Update Employee Set BusinessAssociateId = businessAssociateId where ID = id;
+
+            throw new NotImplementedException();
+        }
+
         public Employee UpdateEmployee(int id, Employee employee)
         {
             throw new NotImplementedException();
         }
 
-        public void UpdateLocationsOfEmployee(int id, List<int> locationIds)
+        public void AddLocationsOfEmployee(int id, List<int> locationIds)
         {
+            //INSERT INTO EmployeeLocationMap
+            //(EmployeeId, LocationId)
+            //VALUES
+            //(id, locationIds[0]), 
+            //(id, locationIds[1]) 
+            //...
+
             throw new NotImplementedException();
         }
 
-        Employee IEmployeeRepository.GetEmployee(int id)
+        public void DeleteLocationsOfEmployee(int id)
         {
+            //Delete from EmployeeLocationMap Where EmployeeId = id
+
+            throw new NotImplementedException();
+        }
+
+        public void UpdateBusinessAssociateOfEmployeesWithLocationId(int locationId, int businessAssociateId)
+        {
+            //Update Employee Set BusinessAssociateId = businessAssociateid where Id in (Select EmployeeId from EmployeeLocationMap where LocationID = locationId)
             throw new NotImplementedException();
         }
     }

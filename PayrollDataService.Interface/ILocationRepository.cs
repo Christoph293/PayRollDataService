@@ -20,5 +20,9 @@ namespace PayrollDataService.Interface
         Location UpdateLocation(int id, Location location);
 
         Location DeleteLocation(int id);
+
+        IEnumerable<Location> GetLocations(List<int> locationIds);
+
+        void UpdateBusinessAssociateOfLocation(int locationId, int id);
     }
 }

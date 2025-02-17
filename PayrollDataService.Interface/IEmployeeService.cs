@@ -23,6 +23,11 @@ namespace PayrollDataService.Interface
 
         Task<Employee> DeleteEmployee(int id);
 
-        Task UpdateLocationsOfEmployee(int id, List<int> locationIds);
+        Task<Employee> UpdateLocationsOfEmployee(int id, List<int> locationIds);
+
+        Task<Employee> UpdateEmployeeBusinessAssociate(int id, int businessAssociateId);
+
+        bool DoesEmployeeExist(int id);
+        Task ChangeBusinessAssociateOfEmployeesWithLocationId(int locationId, int businessAssociateId);
     }
 }

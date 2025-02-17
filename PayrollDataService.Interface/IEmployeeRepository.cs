@@ -23,6 +23,12 @@ namespace PayrollDataService.Interface
 
         Employee DeleteEmployee(int id);
 
-        void UpdateLocationsOfEmployee(int id, List<int> locationIds);
+        void DeleteLocationsOfEmployee(int id);
+
+        void AddLocationsOfEmployee(int id, List<int> locationIds);
+
+        void UpdateBusinessAssociate(int id, int businessAssociateId);
+
+        void UpdateBusinessAssociateOfEmployeesWithLocationId(int locationId, int businessAssociateId);
     }
 }

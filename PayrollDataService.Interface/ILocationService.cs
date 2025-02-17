@@ -20,5 +20,13 @@ namespace PayrollDataService.Interface
         Task<Location> UpdateLocation(int id, Location location);
 
         Task<Location> DeleteLocation(int id);
+
+        bool DoLocationsExist(List<int> locationIds);
+
+        bool DoesLocationExist(int locationId);
+
+        Task<BusinessAssociate> ChangeBusinessAssociateOfLocation(int locationId, int id);
+
+        bool AreLocationsPartOfBusinessAssociation(int businessAssociate, List<int> locationIds);
     }
 }

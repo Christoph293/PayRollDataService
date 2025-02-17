@@ -20,12 +20,25 @@ namespace PayrollDataService.Business
             });
         }
 
+        public Task ChangeBusinessAssociateOfEmployeesWithLocationId(int locationId, int businessAssociateId)
+        {
+            return Task.Run(() =>
+            {
+                employeeRepository.UpdateBusinessAssociateOfEmployeesWithLocationId(locationId, businessAssociateId);
+            });
+        }
+
         public Task<Employee> DeleteEmployee(int id)
         {
             return Task.Run(() =>
             {
                 return employeeRepository.DeleteEmployee(id);
             });
+        }
+
+        public bool DoesEmployeeExist(int id)
+        {
+            return employeeRepository.GetEmployee(id) != null;
         }
 
         public Employee GetEmployee(int id)
@@ -56,11 +69,23 @@ namespace PayrollDataService.Business
             });
         }
 
-        public Task UpdateLocationsOfEmployee(int id, List<int> locationIds)
+        public Task<Employee> UpdateEmployeeBusinessAssociate(int id, int businessAssociateId)
         {
             return Task.Run(() =>
             {
-                employeeRepository.UpdateLocationsOfEmployee(id, locationIds);
+                employeeRepository.DeleteLocationsOfEmployee(id);
+                employeeRepository.UpdateBusinessAssociate(id, businessAssociateId);
+                return employeeRepository.GetEmployee(id);
+            });
+        }
+
+        public Task<Employee> UpdateLocationsOfEmployee(int id, List<int> locationIds)
+        {
+            return Task.Run(() =>
+            {
+                employeeRepository.DeleteLocationsOfEmployee(id);
+                employeeRepository.AddLocationsOfEmployee(id, locationIds);
+                return employeeRepository.GetEmployee(id);
             });
         }
     }

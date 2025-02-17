@@ -18,5 +18,6 @@ namespace PayrollDataService.Interface
         Task<BusinessAssociate> UpdateBusinessAssociate(int id, BusinessAssociate businessAssociate);
 
         Task<BusinessAssociate> DeleteBusinessAssociate(int id);
+        bool DoesBusinessAssociateExist(int businessAssociateId);
     }
 }

@@ -33,6 +33,11 @@ namespace PayrollDataService.Business
             });
         }
 
+        public bool DoesBusinessAssociateExist(int businessAssociateId)
+        {
+            return businessAssociateRepository.GetBusinessAssociate(businessAssociateId) != null;
+        }
+
         public BusinessAssociate GetBusinessAssociate(int id)
         {
             return businessAssociateRepository.GetBusinessAssociate(id);

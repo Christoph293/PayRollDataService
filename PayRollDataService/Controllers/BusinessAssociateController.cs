@@ -29,11 +29,26 @@ namespace PayrollDataService.Controller.Controllers
         [HttpGet("{id:int}")]
         public BusinessAssociate Get(int id) => businessAssociateService.GetBusinessAssociate(id);
 
+        //Usecase: Ausgabe aller Standorte eines Geschäftspartners
         [HttpGet("{id:int}/locations")]
         public IEnumerable<Location> GetLocationsByBusinessAssociateId(int id) => locationService.GetLocationByBusinessAssociateId(id);
 
+        //Usecase: Ausgabe aller Mitarbeiter eines Geschäftspartners
         [HttpGet("{id:int}/employees")]
         public IEnumerable<Employee> GetEmployeesByBusinessAssociateId(int id) => employeeService.GetEmployeesByBusinessAssociateId(id);
+
+        //Usecase: Standort von Geschäftspartner A wird von Geschäftspartner B übernommen
+        [HttpPut("{id:int}/locations")]
+        public async Task<BusinessAssociate> AddExistingLocationToBusinessAssociate(int id, [FromBody] int locationId)
+        {
+            if(!locationService.DoesLocationExist(locationId) || !businessAssociateService.DoesBusinessAssociateExist(id))
+            {
+                throw new System.Web.Http.HttpResponseException(System.Net.HttpStatusCode.NotFound);
+            }
+
+            await employeeService.ChangeBusinessAssociateOfEmployeesWithLocationId(locationId, id);
+            return await locationService.ChangeBusinessAssociateOfLocation(locationId, id);
+        }
 
         [HttpPost]
         public async Task<ActionResult<BusinessAssociate>> PostBusinessAssociate(BusinessAssociate businessAssociate)

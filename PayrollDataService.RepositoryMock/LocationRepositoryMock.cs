@@ -30,7 +30,7 @@ namespace PayrollDataService.RepositoryMock
             return location;
         }
 
-        public Location GetLocation(int id) => repositoryMockBase.Locations.Where(x => x.ID == id).FirstOrDefault();
+        public Location GetLocation(int id) => repositoryMockBase.Locations.FirstOrDefault(x => x.ID == id);
 
         public IEnumerable<Location> GetLocationByBusinessAssociateId(int businessAssociateId)
         {
@@ -45,6 +45,16 @@ namespace PayrollDataService.RepositoryMock
         }
 
         public IEnumerable<Location> GetLocations() => repositoryMockBase.Locations.ToList();
+
+        public IEnumerable<Location> GetLocations(List<int> locationIds)
+        {
+            return repositoryMockBase.Locations.Where(x => locationIds.Contains(x.ID)).ToList();
+        }
+
+        public void UpdateBusinessAssociateOfLocation(int locationId, int id)
+        {
+            throw new NotImplementedException();
+        }
 
         public Location UpdateLocation(int id, Location location)
         {

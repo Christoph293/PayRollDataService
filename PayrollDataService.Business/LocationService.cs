@@ -11,6 +11,7 @@ namespace PayrollDataService.Business
     public class LocationService : ILocationService
     {
         private ILocationRepository locationRepository;
+        private IBusinessAssociateRepository businessAssociateRepository;
 
         public LocationService(ILocationRepository locationRepository)
         {
@@ -22,9 +23,33 @@ namespace PayrollDataService.Business
             return Task.Run(() => { return locationRepository.AddLocation(location); });
         }
 
+        public bool AreLocationsPartOfBusinessAssociation(int businessAssociate, List<int> locationIds)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<BusinessAssociate> ChangeBusinessAssociateOfLocation(int locationId, int id)
+        {
+            return Task.Run(() =>
+            {
+                locationRepository.UpdateBusinessAssociateOfLocation(locationId, id);
+                return businessAssociateRepository.GetBusinessAssociate(id);
+            });
+        }
+
         public Task<Location> DeleteLocation(int id)
         {
             return Task.Run(() => { return locationRepository.DeleteLocation(id); });
+        }
+
+        public bool DoesLocationExist(int locationId)
+        {
+            return locationRepository.GetLocation(locationId) != null;
+        }
+
+        public bool DoLocationsExist(List<int> locationIds)
+        {
+            return locationRepository.GetLocations(locationIds).Count() == locationIds.Count();
         }
 
         public Location GetLocation(int id)
