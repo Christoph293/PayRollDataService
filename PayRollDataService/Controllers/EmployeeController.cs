@@ -9,36 +9,36 @@ namespace PayrollDataService.Controller.Controllers
     [Route("[controller]")]
     public class EmployeeController : ControllerBase
     {
-        private IEmployeeRepository employeeRepository;
+        private IEmployeeService employeeService;
         private ILogger<EmployeeController> logger;
 
-        public EmployeeController(IEmployeeRepository employeeRepository, ILogger<EmployeeController> logger)
+        public EmployeeController(IEmployeeService employeeService, ILogger<EmployeeController> logger)
         {
-            this.employeeRepository = employeeRepository;
+            this.employeeService = employeeService;
             this.logger = logger;
         }
 
         [HttpGet(Name = "GetEmployees")]
-        public IEnumerable<Employee> Get() => employeeRepository.GetEmployees();
+        public IEnumerable<Employee> Get() => employeeService.GetEmployees();
 
         [HttpGet("{Id}")]
-        public Employee Get(int id) => employeeRepository.GetEmployee(id);
+        public Employee Get(int id) => employeeService.GetEmployee(id);
 
         [HttpPost]
-        public async Task<ActionResult<Employee>> PostEmployee(Employee employee) => await employeeRepository.AddEmployee(employee);
+        public async Task<ActionResult<Employee>> PostEmployee(Employee employee) => await employeeService.AddEmployee(employee);
 
         [HttpPut]
-        public async Task<ActionResult<Employee>> PutEmployee(int id, Employee employee) => await employeeRepository.UpdateEmployee(id, employee);
+        public async Task<ActionResult<Employee>> PutEmployee(int id, Employee employee) => await employeeService.UpdateEmployee(id, employee);
 
         [HttpPut("{id:int}/locations")]
         public async Task<ActionResult<Employee>> UpdateEmployeeLocations(int id, [FromBody] List<int> locationIds)
         {
-            await employeeRepository.UpdateLocationsOfEmployee(id, locationIds);
-            return employeeRepository.GetEmployee(id);
+            await employeeService.UpdateLocationsOfEmployee(id, locationIds);
+            return employeeService.GetEmployee(id);
         }
         
 
         [HttpDelete]
-        public async Task<ActionResult<Employee>> DeleteEmployee(int id) => await employeeRepository.DeleteEmployee(id);
+        public async Task<ActionResult<Employee>> DeleteEmployee(int id) => await employeeService.DeleteEmployee(id);
     }
 }

@@ -8,10 +8,10 @@ namespace PayrollDataService.Interface
 
         BusinessAssociate GetBusinessAssociate(int id);
 
-        Task<BusinessAssociate> AddBusinessAssociate(BusinessAssociate businessAssociate);
+        BusinessAssociate AddBusinessAssociate(BusinessAssociate businessAssociate);
 
-        Task<BusinessAssociate> UpdateBusinessAssociate(int id, BusinessAssociate businessAssociate);
+        BusinessAssociate UpdateBusinessAssociate(int id, BusinessAssociate businessAssociate);
 
-        Task<BusinessAssociate> DeleteBusinessAssociate(int id);
+        BusinessAssociate DeleteBusinessAssociate(int id);
     }
 }

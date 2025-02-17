@@ -17,19 +17,17 @@ namespace PayrollDataService.RepositoryMock
             this.repositoryMockBase = repositoryMock;
         }
 
-        public Task<BusinessAssociate> AddBusinessAssociate(BusinessAssociate businessAssociate)
+        public BusinessAssociate AddBusinessAssociate(BusinessAssociate businessAssociate)
         {
-            return Task.Run(() => { repositoryMockBase.BusinessAssociates.Add(businessAssociate); return businessAssociate; });
+            repositoryMockBase.BusinessAssociates.Add(businessAssociate); 
+            return businessAssociate;
         }
 
-        public Task<BusinessAssociate> DeleteBusinessAssociate(int id)
+        public BusinessAssociate DeleteBusinessAssociate(int id)
         {
-            return Task.Run(() =>
-            {
-                var businessAssociate = repositoryMockBase.BusinessAssociates.First(x => x.ID == id);
-                repositoryMockBase.BusinessAssociates.Remove(businessAssociate);
-                return businessAssociate;
-            });
+            var businessAssociate = repositoryMockBase.BusinessAssociates.First(x => x.ID == id);
+            repositoryMockBase.BusinessAssociates.Remove(businessAssociate);
+            return businessAssociate;
         }
 
         public BusinessAssociate GetBusinessAssociate(int id)
@@ -42,10 +40,10 @@ namespace PayrollDataService.RepositoryMock
             return repositoryMockBase.BusinessAssociates;
         }
 
-        public Task<BusinessAssociate> UpdateBusinessAssociate(int id, BusinessAssociate businessAssociate)
+        public BusinessAssociate UpdateBusinessAssociate(int id, BusinessAssociate businessAssociate)
         {
-            return Task.Run(() => { repositoryMockBase.BusinessAssociates.Remove(repositoryMockBase.BusinessAssociates.First(x => x.ID == id)); 
-                                    repositoryMockBase.BusinessAssociates.Add(businessAssociate); return businessAssociate; });
+             repositoryMockBase.BusinessAssociates.Remove(repositoryMockBase.BusinessAssociates.First(x => x.ID == id)); 
+             repositoryMockBase.BusinessAssociates.Add(businessAssociate); return businessAssociate;
         }
     }
 }

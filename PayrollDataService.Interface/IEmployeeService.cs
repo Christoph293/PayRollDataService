@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PayrollDataService.Interface
 {
-    public interface IEmployeeRepository
+    public interface IEmployeeService
     {
         IEnumerable<Employee> GetEmployees();
 
@@ -17,12 +17,12 @@ namespace PayrollDataService.Interface
 
         Employee GetEmployee(int id);
 
-        Employee AddEmployee(Employee employee);
+        Task<Employee> AddEmployee(Employee employee);
 
-        Employee UpdateEmployee(int id, Employee employee);
+        Task<Employee> UpdateEmployee(int id, Employee employee);
 
-        Employee DeleteEmployee(int id);
+        Task<Employee> DeleteEmployee(int id);
 
-        void UpdateLocationsOfEmployee(int id, List<int> locationIds);
+        Task UpdateLocationsOfEmployee(int id, List<int> locationIds);
     }
 }

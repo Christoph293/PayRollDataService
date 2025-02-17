@@ -17,19 +17,17 @@ namespace PayrollDataService.RepositoryMock
             this.repositoryMockBase = repositoryMockBase;
         }
 
-        public Task<Location> AddLocation(Location location)
+        public Location AddLocation(Location location)
         {
-            return Task.Run(() => { repositoryMockBase.Locations.Add(location); return location; });
+            repositoryMockBase.Locations.Add(location); 
+            return location;
         }
 
-        public Task<Location> DeleteLocation(int id)
+        public Location DeleteLocation(int id)
         {
-            return Task.Run(() =>
-            {
-                var location = repositoryMockBase.Locations.First(x => x.ID == id);
-                repositoryMockBase.Locations.Remove(location);
-                return location;
-            });
+            var location = repositoryMockBase.Locations.First(x => x.ID == id);
+            repositoryMockBase.Locations.Remove(location);
+            return location;
         }
 
         public Location GetLocation(int id) => repositoryMockBase.Locations.Where(x => x.ID == id).FirstOrDefault();
@@ -48,9 +46,11 @@ namespace PayrollDataService.RepositoryMock
 
         public IEnumerable<Location> GetLocations() => repositoryMockBase.Locations.ToList();
 
-        public Task<Location> UpdateLocation(int id, Location location)
+        public Location UpdateLocation(int id, Location location)
         {
-            return Task.Run(() => { repositoryMockBase.Locations.Remove(repositoryMockBase.Locations.First(x => x.ID == id)); repositoryMockBase.Locations.Add(location); return location; });
+            repositoryMockBase.Locations.Remove(repositoryMockBase.Locations.First(x => x.ID == id)); 
+            repositoryMockBase.Locations.Add(location);
+            return location;
         }
     }
 }

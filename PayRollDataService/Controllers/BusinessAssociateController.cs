@@ -11,46 +11,46 @@ namespace PayrollDataService.Controller.Controllers
     public class BusinessAssociateController : ControllerBase
     {
         private ILogger<BusinessAssociateController> logger;
-        private IBusinessAssociateRepository businessAssociateRepository;
-        private ILocationRepository locationRepository;
-        private IEmployeeRepository employeeRepository;
+        private IBusinessAssociateService businessAssociateService;
+        private ILocationService locationService;
+        private IEmployeeService employeeService;
 
-        public BusinessAssociateController(ILogger<BusinessAssociateController> logger, IBusinessAssociateRepository businessAssociateRepository, ILocationRepository locationRepository, IEmployeeRepository employeeRepository)
+        public BusinessAssociateController(ILogger<BusinessAssociateController> logger, IBusinessAssociateService businessAssociateRepository, ILocationService locationRepository, IEmployeeService employeeRepository)
         {
             this.logger = logger;
-            this.businessAssociateRepository = businessAssociateRepository;
-            this.locationRepository = locationRepository;
-            this.employeeRepository = employeeRepository;
+            this.businessAssociateService = businessAssociateRepository;
+            this.locationService = locationRepository;
+            this.employeeService = employeeRepository;
         }
 
         [HttpGet(Name = "GetBusinessAssociates")]
-        public IEnumerable<BusinessAssociate> Get() => businessAssociateRepository.GetBusinessAssociates();
+        public IEnumerable<BusinessAssociate> Get() => businessAssociateService.GetBusinessAssociates();
 
         [HttpGet("{id:int}")]
-        public BusinessAssociate Get(int id) => businessAssociateRepository.GetBusinessAssociate(id);
+        public BusinessAssociate Get(int id) => businessAssociateService.GetBusinessAssociate(id);
 
         [HttpGet("{id:int}/locations")]
-        public IEnumerable<Location> GetLocationsByBusinessAssociateId(int id) => locationRepository.GetLocationByBusinessAssociateId(id);
+        public IEnumerable<Location> GetLocationsByBusinessAssociateId(int id) => locationService.GetLocationByBusinessAssociateId(id);
 
         [HttpGet("{id:int}/employees")]
-        public IEnumerable<Employee> GetEmployeesByBusinessAssociateId(int id) => employeeRepository.GetEmployeesByBusinessAssociateId(id);
+        public IEnumerable<Employee> GetEmployeesByBusinessAssociateId(int id) => employeeService.GetEmployeesByBusinessAssociateId(id);
 
         [HttpPost]
         public async Task<ActionResult<BusinessAssociate>> PostBusinessAssociate(BusinessAssociate businessAssociate)
         {
-            return await businessAssociateRepository.AddBusinessAssociate(businessAssociate);
+            return await businessAssociateService.AddBusinessAssociate(businessAssociate);
         }
 
         [HttpPut]
         public async Task<ActionResult<BusinessAssociate>> PutBusinessAssociate(int id, BusinessAssociate businessAssociate)
         {
-            return await businessAssociateRepository.UpdateBusinessAssociate(id, businessAssociate);
+            return await businessAssociateService.UpdateBusinessAssociate(id, businessAssociate);
         }
 
         [HttpDelete]
         public async Task<ActionResult<BusinessAssociate>> DeleteBusinessAssociate(int id)
         {
-            return await businessAssociateRepository.DeleteBusinessAssociate(id);
+            return await businessAssociateService.DeleteBusinessAssociate(id);
         }
     }
 }

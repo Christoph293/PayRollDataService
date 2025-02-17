@@ -1,3 +1,4 @@
+using PayrollDataService.Business;
 using PayrollDataService.Interface;
 using PayrollDataService.Repository;
 using PayrollDataService.RepositoryMock;
@@ -15,6 +16,9 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IEmployeeRepository, EmployeeRepositoryMock>();
 builder.Services.AddScoped<ILocationRepository, LocationRepositoryMock>();
 builder.Services.AddScoped<IBusinessAssociateRepository, BusinessAssociateRepositoryMock>();
+builder.Services.AddScoped<IBusinessAssociateService, BusinessAssociateService>();
+builder.Services.AddScoped<ILocationService, LocationService>();
+builder.Services.AddScoped<IEmployeeService, EmployeeService>();
 builder.Services.AddScoped<IRepositoryMockBase, RepositoryMockBase>();
 
 var app = builder.Build();

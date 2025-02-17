@@ -12,19 +12,17 @@ namespace PayrollDataService.RepositoryMock
             this.repositoryMockBase = repositoryMockBase;
         }
 
-        public Task<Employee> AddEmployee(Employee employee)
+        public Employee AddEmployee(Employee employee)
         {
-            return Task.Run(() => { repositoryMockBase.Employees.Add(employee); return employee; });
+            repositoryMockBase.Employees.Add(employee); 
+            return employee;
         }
 
-        public Task<Employee> DeleteEmployee(int id)
+        public Employee DeleteEmployee(int id)
         {
-            return Task.Run(() =>
-            {
-                var employee = repositoryMockBase.Employees.First(x => x.ID == id);
-                repositoryMockBase.Employees.Remove(employee);
-                return employee;
-            });
+            var employee = repositoryMockBase.Employees.First(x => x.ID == id);
+            repositoryMockBase.Employees.Remove(employee);
+            return employee;
         }
 
         public Employee GetEmployee(int id) => repositoryMockBase.Employees.FirstOrDefault(x => x.ID == id);
@@ -41,12 +39,12 @@ namespace PayrollDataService.RepositoryMock
             return repositoryMockBase.Employees.Where(x => x.Locations.Contains(id)).ToList();
         }
 
-        public Task<Employee> UpdateEmployee(int id, Employee employee)
+        public Employee UpdateEmployee(int id, Employee employee)
         {
             throw new NotImplementedException();
         }
 
-        public Task UpdateLocationsOfEmployee(int id, List<int> locationIds)
+        public void UpdateLocationsOfEmployee(int id, List<int> locationIds)
         {
             throw new NotImplementedException();
         }

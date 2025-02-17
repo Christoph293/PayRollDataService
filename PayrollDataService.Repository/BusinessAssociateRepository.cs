@@ -10,12 +10,12 @@ namespace PayrollDataService.Repository
 {
     public class BusinessAssociateRepository : IBusinessAssociateRepository
     {
-        public Task<BusinessAssociate> AddBusinessAssociate(BusinessAssociate businessAssociate)
+        public BusinessAssociate AddBusinessAssociate(BusinessAssociate businessAssociate)
         {
             throw new NotImplementedException();
         }
 
-        public Task<BusinessAssociate> DeleteBusinessAssociate(int id)
+        public BusinessAssociate DeleteBusinessAssociate(int id)
         {
             throw new NotImplementedException();
         }
@@ -30,7 +30,7 @@ namespace PayrollDataService.Repository
             throw new NotImplementedException();
         }
 
-        public Task<BusinessAssociate> UpdateBusinessAssociate(int id, BusinessAssociate businessAssociate)
+        public BusinessAssociate UpdateBusinessAssociate(int id, BusinessAssociate businessAssociate)
         {
             throw new NotImplementedException();
         }

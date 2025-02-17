@@ -10,12 +10,12 @@ namespace PayrollDataService.Repository
 {
     public class LocationRepository : ILocationRepository
     {
-        public Task<Location> AddLocation(Location location)
+        public Location AddLocation(Location location)
         {
             throw new NotImplementedException();
         }
 
-        public Task<Location> DeleteLocation(int id)
+        public Location DeleteLocation(int id)
         {
             throw new NotImplementedException();
         }
@@ -35,7 +35,7 @@ namespace PayrollDataService.Repository
             throw new NotImplementedException();
         }
 
-        public Task<Location> UpdateLocation(int id, Location location)
+        public Location UpdateLocation(int id, Location location)
         {
             throw new NotImplementedException();
         }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PayrollDataService.Interface
 {
-    public interface ILocationRepository
+    public interface ILocationService
     {
         IEnumerable<Location> GetLocations();
 
@@ -15,10 +15,10 @@ namespace PayrollDataService.Interface
 
         Location GetLocation(int id);
 
-        Location AddLocation(Location location);
+        Task<Location> AddLocation(Location location);
 
-        Location UpdateLocation(int id, Location location);
+        Task<Location> UpdateLocation(int id, Location location);
 
-        Location DeleteLocation(int id);
+        Task<Location> DeleteLocation(int id);
     }
 }

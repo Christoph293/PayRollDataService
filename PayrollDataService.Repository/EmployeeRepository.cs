@@ -5,12 +5,12 @@ namespace PayrollDataService.Repository
 {
     public class EmployeeRepository : IEmployeeRepository
     {
-        public Task<Employee> AddEmployee(Employee employee)
+        public Employee AddEmployee(Employee employee)
         {
             throw new NotImplementedException();
         }
 
-        public Task<Employee> DeleteEmployee(int id)
+        public Employee DeleteEmployee(int id)
         {
             throw new NotImplementedException();
         }
@@ -35,12 +35,12 @@ namespace PayrollDataService.Repository
             throw new NotImplementedException();
         }
 
-        public Task<Employee> UpdateEmployee(int id, Employee employee)
+        public Employee UpdateEmployee(int id, Employee employee)
         {
             throw new NotImplementedException();
         }
 
-        public Task UpdateLocationsOfEmployee(int id, List<int> locationIds)
+        public void UpdateLocationsOfEmployee(int id, List<int> locationIds)
         {
             throw new NotImplementedException();
         }
