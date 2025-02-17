@@ -1,0 +1,6 @@
+@PayRollDataService_HostAddress = http://localhost:5117
+
+GET {{PayRollDataService_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
