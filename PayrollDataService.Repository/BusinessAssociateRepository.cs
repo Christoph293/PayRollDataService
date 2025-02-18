@@ -22,6 +22,7 @@ namespace PayrollDataService.Repository
 
         public BusinessAssociate GetBusinessAssociate(int id)
         {
+            //select * from BusinessAssociate where ID = id
             throw new NotImplementedException();
         }
 

@@ -25,7 +25,15 @@ namespace PayrollDataService.Business
 
         public bool AreLocationsPartOfBusinessAssociation(int businessAssociate, List<int> locationIds)
         {
-            throw new NotImplementedException();
+            foreach(var locationId in locationIds)
+            {
+                var location = locationRepository.GetLocation(locationId);
+                if(location.BusinessAssociate != businessAssociate)
+                {
+                    return false;
+                }
+            }
+            return true;
         }
 
         public Task<BusinessAssociate> ChangeBusinessAssociateOfLocation(int locationId, int id)

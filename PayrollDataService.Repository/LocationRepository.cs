@@ -28,6 +28,7 @@ namespace PayrollDataService.Repository
 
         public Location GetLocation(int id)
         {
+            //select * from Location where ID = id;
             throw new NotImplementedException();
         }
 
@@ -43,6 +44,7 @@ namespace PayrollDataService.Repository
 
         public IEnumerable<Location> GetLocations(List<int> locationIds)
         {
+            //select * from Location where ID in locationIds;
             throw new NotImplementedException();
         }
 

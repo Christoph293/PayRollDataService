@@ -1,8 +1,7 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using PayrollDataService.Interface;
 using PayrollDataService.Model;
-using System.Numerics;
+using System.Net;
 
 namespace PayrollDataService.Controller.Controllers
 {
@@ -27,15 +26,26 @@ namespace PayrollDataService.Controller.Controllers
         [HttpPut("{id:int}/locations")]
         public async Task<ActionResult<Employee>> UpdateEmployeeLocations(int id, [FromBody] List<int> locationIds)
         {
-            if (!employeeService.DoesEmployeeExist(id) || !locationService.DoLocationsExist(locationIds))
+            if (!employeeService.DoesEmployeeExist(id))
             {
-                throw new System.Web.Http.HttpResponseException(System.Net.HttpStatusCode.NotFound);
+                return NotFound(new
+                {
+                    ReasonPhrase = "Employee ID Not Found"
+                });
+            }
+
+            if(!locationService.DoLocationsExist(locationIds))
+            {
+                return NotFound(new
+                {
+                    ReasonPhrase = "Location ID Not Found"
+                });
             }
 
             var employee = employeeService.GetEmployee(id);
             if(!locationService.AreLocationsPartOfBusinessAssociation(employee.BusinessAssociate, locationIds))
             {
-                throw new System.Web.Http.HttpResponseException(System.Net.HttpStatusCode.PreconditionFailed);
+                return StatusCode((int)HttpStatusCode.PreconditionFailed, "At least one location is not part of the employees business associate");
             }
 
             return await employeeService.UpdateLocationsOfEmployee(id, locationIds);
@@ -45,9 +55,21 @@ namespace PayrollDataService.Controller.Controllers
         [HttpPut("{id:int}/businessAssociate")]
         public async Task<ActionResult<Employee>> UpdateEmployeeBusinessAssociate(int id, [FromBody] int businessAssociateId)
         {
-            if(!employeeService.DoesEmployeeExist(id) || !businessAssociateService.DoesBusinessAssociateExist(businessAssociateId))
+
+            if (!employeeService.DoesEmployeeExist(id))
             {
-                throw new System.Web.Http.HttpResponseException(System.Net.HttpStatusCode.NotFound);
+                return NotFound(new
+                {
+                    ReasonPhrase = "Employee ID Not Found"
+                });
+            }
+
+            if (!businessAssociateService.DoesBusinessAssociateExist(businessAssociateId))
+            {
+                return NotFound(new
+                {
+                    ReasonPhrase = "Business Associate ID Not Found"
+                });
             }
 
             return await employeeService.UpdateEmployeeBusinessAssociate(id, businessAssociateId);

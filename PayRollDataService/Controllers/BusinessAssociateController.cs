@@ -39,11 +39,22 @@ namespace PayrollDataService.Controller.Controllers
 
         //Usecase 6: Standort von Geschäftspartner A wird von Geschäftspartner B übernommen
         [HttpPut("{id:int}/locations")]
-        public async Task<BusinessAssociate> AddExistingLocationToBusinessAssociate(int id, [FromBody] int locationId)
+        public async Task<ActionResult<BusinessAssociate>> AddExistingLocationToBusinessAssociate(int id, [FromBody] int locationId)
         {
-            if(!locationService.DoesLocationExist(locationId) || !businessAssociateService.DoesBusinessAssociateExist(id))
+            if(!locationService.DoesLocationExist(locationId))
             {
-                throw new System.Web.Http.HttpResponseException(System.Net.HttpStatusCode.NotFound);
+                return NotFound(new
+                {
+                    ReasonPhrase = "Location ID Not Found"
+                });
+            }
+
+            if (!businessAssociateService.DoesBusinessAssociateExist(id))
+            {
+                return NotFound(new
+                {
+                    ReasonPhrase = "Business Associate ID Not Found"
+                });
             }
 
             await employeeService.ChangeBusinessAssociateOfEmployeesWithLocationId(locationId, id);
